@@ -79,3 +79,84 @@ ORDER BY TotalDeathsCounts DESC;
 |---------------|----------------------|
 | United States |       1,127,152      |
 
+
+## Let's Break it down into Continents
+![carbon (4)](https://github.com/1Numankhan/SQL-Data-exploration-/assets/138983077/f603f651-32d0-4620-97b7-f9d88b99aba2)
+
+|   Continent    | Total Deaths Count |
+|----------------|--------------------|
+| North America  |      1,127,152     |
+| South America  |        704,659     |
+|      Asia      |        532,027     |
+|     Europe     |        399,999     |
+|     Africa     |        102,595     |
+|    Oceania     |         22,887     |
+
+## Total Deaths and cases worldwide
+
+``` 
+
+SELECT
+
+  SUM(new_cases) AS TotalCases,
+  SUM(new_deaths) AS TotalDeaths,
+  (SUM(new_deaths) / SUM(new_cases)) * 100 AS TotalDeathPercentage --  Totalcases = 770644152 , TotalDeaths = 6963700, percentage 0.9036% 
+FROM
+  `my-data-science-project-123.covid_deaths.Coivddeaths_19`
+WHERE
+  continent IS NOT NULL
+```
+|  Total Cases  |  Total Deaths  |  Total Death Percentage  |
+|--------------|----------------|--------------------------|
+|  770,644,152  |     6,963,700    |         0.9036%         |
+
+**key finding**
+- Total Cases in the world is 770,644,152
+- Total Deaths is   6,963,700
+- which makes up 0.9036% of the world's Populations
+
+This  insight is all about the COVID deaths and cases worldwide in the continents, countries,  and regions.
+
+
+# Covid Vaccinations data 
+Extract insights from the vaccination data 
+
+Joining the tables
+``` SQL
+
+ SELECT 
+ * 
+ FROM `my-data-science-project-123.covid_deaths.Coivddeaths_19` death
+ 
+ join `my-data-science-project-123.covid_vaccinations.Vaccination` vacc
+ On death.location = vacc.location
+ and death.date = vacc.date;
+```
+**Key Finding**
+ - looking for the Total Population vs. vaccination 
+- How many people got vaccinated in the world 
+- china is led in the vaccination program
+
+
+## Vaccinated Country by Populations
+![carbon (5)](https://github.com/1Numankhan/SQL-Data-exploration-/assets/138983077/5ca599b2-95c1-4e2c-87df-fb0da2c8c565)
+
+
+|  Location  |     Date     |  Population  |  Continent  | New Vaccinations | Rolling People Vaccinated | Vaccination Percentage |
+|------------|--------------|--------------|-------------|------------------|---------------------------|------------------------|
+|  Zimbabwe  |  2023-08-14  |  16,320,539  |   Africa    |       null       |        10,801,392         |        66.18%          |
+
+
+
+## **Key insights from the **Covid-19** data 
+key finding
+1. I found the maximum **total cases percentage** which is 0.67% of the total population of **Pakistan**
+2. **Cyprus** is the most affected by COVID-19 based on its population
+which makes up **73.75** %of its populations
+3. United States with the **mostdeathsCounts** which is **1127152** and the data is authentic.
+4.  North America** which is the most affected continent 	**1,127,152** Total Death counts  till now.
+5.  **Total Cases** in the world is **770,644,152**
+**Total Deaths is 6,963,700** which makes up **0.9036**%of the world's Population
+
+
+
